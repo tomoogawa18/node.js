@@ -18,90 +18,104 @@ header {
     z-index: 10;
 }
 
-.logo{
-    width: 124px;
-    margin-top: 20px;
+.logo {
+    width: 25%;
+
 }
 
-.header-left{
+.header-left {
     display: inline-block;
 }
 
-.header-right{
+.header-right {
     background-color: rgba(255, 255, 255, 0.3);
     float: right;
 }
 
-.header-right a{
+.header-right a {
     line-height: 65px;
 }
 
-.top-wrapper{
+.top-wrapper {
     padding-top: 180px;
     padding-bottom: 100px;
-    background-image: url(https://prog-8.com/images/html/advanced/top.png);
+    background-color: rgba(28, 216, 223, 0.966);
+    ;
     background-size: cover;
     color: white;
     text-align: center;
 }
 
-.container{
+.container {
     width: 1170px;
     margin: 0 auto;
     padding: 0 15px;
 }
 
 
-.top-wrapper h1{
+.top-wrapper h1 {
     opacity: 0.7;
-    font-size: 45px;
+    font-size: 75px;
     letter-spacing: 5px;
+    padding-top: 40px;
+    padding-bottom: 50px;
 }
 
-.top-wrapper p{
+.top-wrapper p {
     opacity: 0.7;
     padding-top: 10px;
+    font-size: 20px;
+
 }
 
-.btn{
+.btn-wrapper {
+    padding-top: 30px;
+}
+
+.btn {
     margin-top: 10px;
-    padding: 8px 24px;
+    padding: 16px 24px;
     display: inline-block;
     opacity: 0.8;
-    
+
 }
 
-.btn:hover{
+.btn-wrapper p {
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
+.btn:hover {
     opacity: 1;
 }
 
-.signup{
+.signup {
     background-color: #239b76;
 }
 
-.facebook{
+.facebook {
     background-color: #3b5998;
     margin-right: 10px;
 }
 
-.twitter{
+.twitter {
     background-color: #55acee;
 }
 
-.lesson-wrapper{
+.lesson-wrapper {
     height: 500px;
 }
 
-.heading h2{
+.heading h2 {
     font-size: 32px;
     text-align: center;
     padding-top: 30px;
     padding-bottom: 30px;
 }
 
-.lesson{
+.lesson {
 
-    float:left;
+    float: left;
     width: 25%;
     text-align: center;
 }
@@ -110,14 +124,14 @@ header {
     position: relative;
 }
 
-.lesson-icon p{
+.lesson-icon p {
     position: absolute;
     top: 90px;
     width: 100%;
     color: white;
 }
 
-.txt-contents{
+.txt-contents {
     width: 80%;
     margin: 0 auto;
     font-size: 12px;
@@ -125,42 +139,43 @@ header {
     padding-top: 12px;
 }
 
-.footer-head{
+.footer-head {
     text-align: center;
     font-size: large;
 }
-.message-wrapper{
+
+.message-wrapper {
     text-align: center;
 }
 
-.message{
-    background-color:#835dca;
+.message {
+    background-color: #835dca;
     padding: 15px 40px;
     color: white;
     box-shadow: 0px 7px #6a977c;
     cursor: pointer;
 }
 
-.message:active{
+.message:active {
     position: relative;
-    top:5px;
+    top: 5px;
     box-shadow: none;
 }
-footer{
-    padding-top: 30px;
+
+footer {
+    margin-top: 60px;
+    background-color: rgba(34, 49, 52, 0.9);
+    height: 200px;
 }
 
-footer img{
+footer img {
     font-size: 12px;
-  
-    width: 125px;
-  }
-  
-  
-  /* <footer>の中の<p>のCSSを指定してください */
-  footer p{
-  
-     font-size:12px;
-     color: #b3aeb5;
-  }
-  
+    width: 80px;
+    
+}
+
+
+footer p {
+    font-size: 12px;
+    color: #b3aeb5;
+}

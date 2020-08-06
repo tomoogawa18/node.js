@@ -5,6 +5,9 @@ const path = require('path');
 
 const port = 3000;
 const app = express();
+const expressLayouts = require('express-ejs-layouts');
+
+app.use(expressLayouts);
 
 app.get('/:aaa', function (req, res) {
     res.send('Hello ' + req.query.name);
