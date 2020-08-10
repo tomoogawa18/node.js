@@ -114,14 +114,19 @@ header {
 }
 
 .lesson {
-
     float: left;
     width: 25%;
     text-align: center;
 }
 
+.lesson a{
+    display: block;
+}
+
+
 .lesson-icon {
     position: relative;
+    cursor: pointer;
 }
 
 .lesson-icon p {
@@ -129,6 +134,7 @@ header {
     top: 90px;
     width: 100%;
     color: white;
+    
 }
 
 .txt-contents {
