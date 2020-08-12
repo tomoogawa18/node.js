@@ -1,0 +1,9 @@
+<h1>Post一覧</h1>
+
+<a href="/post/new">Post作成</a>
+
+<% posts.forEach((s) =>{ %>
+    <p>name: <%= s.name %></p>
+    <p>content: <%= s.content %></p>
+    <a href="#">修正</a>
+<% }); %>

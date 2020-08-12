@@ -1,0 +1,17 @@
+<div class="pb-2 pb-5 h2">新しいpostを作る。</div>
+
+<form action="/post/create" method="post">
+  <div class="form-group">
+    <label for="exampleInputName1">Name</label>
+    <input name="name" type="name" class="form-control" id="exampleInputName1" aria-describedby="nameHelp" placeholder="">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Content</label>
+    <textarea name="content" type="textarea" class="form-control" id="exampleInputPassword1" placeholder=""></textarea>
+  </div>
+  <div class="form-group form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">確認する</label>
+  </div>
+  <button type="submit" class="btn btn-primary">送信</button>
+</form>
