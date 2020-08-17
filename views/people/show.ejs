@@ -1,0 +1,36 @@
+<div class="pb-2 pb-5 h2">person/show  各ポストの詳細</div>
+
+<form action="<%= `/person/${people.id}/update?_method=PUT` %>" method="post">
+  <div class="form-group">
+    <label for="exampleInputName1">name</label>
+    <input value="<%= people.name %>" name="name" type="name" class="form-control" id="exampleInputName1" aria-describedby="nameHelp" placeholder="">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputName1">email</label>
+    <input value="<%= people.email %>" name="email" type="name" class="form-control" id="exampleInputName1" aria-describedby="nameHelp" placeholder="">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">password</label>
+    <textarea name="password" type="textarea" class="form-control" id="exampleInputPassword1" placeholder=""><%= people.password %></textarea>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">登録日</label>
+    <textarea readonly name="" type="textarea" class="form-control" id="exampleInputPassword1" placeholder=""><%= people.createdAt %></textarea>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">更新日</label>
+    <textarea readonly name="" type="textarea" class="form-control" id="exampleInputPassword1" placeholder=""><%= people.updatedAt %></textarea>
+  </div>
+  <div class="form-group">
+  <label for="exampleInputPassword1">posts</label>
+    <% people.posts.forEach((s) =>{ %>
+      <textarea readonly name="" type="textarea" class="form-control" id="exampleInputPassword1" placeholder=""><%= s %></textarea>
+     <% }); %>
+  </div>
+  <div class="form-group form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">確認する</label>
+  </div>
+  <button type="submit" class="btn btn-primary">更新</button>
+</form>
+<a href= "<%= `/person/${people.id}/delete?_method=DELETE` %>" onclick="return confirm('本当に削除しますか？')" class="btn btn-primary mt-3">削除</a>

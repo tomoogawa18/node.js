@@ -1,9 +1,19 @@
-<h1>Post一覧</h1>
+<h1 class="mb-3">Post一覧</h1>
 
-<a href="/post/new">Post作成</a>
-
-<% posts.forEach((s) =>{ %>
-    <p>name: <%= s.name %></p>
-    <p>content: <%= s.content %></p>
-    <a href="#">修正</a>
-<% }); %>
+<div class="container">
+    <a class="mb-4" href="/post/new">新しいPostを作成する。</a>
+    <div class="row mt-3">
+        <% posts.forEach((s) =>{ %>
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <div class="card-text">
+                        <p>内容: <%= s.content %></p>
+                    </div>
+                    <a href="<%= `/post/${s.id}` %>">詳細</a>
+                </div>
+            </div>
+        </div>
+        <% }); %>
+    </div>
+</div>

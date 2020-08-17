@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="ja">
 
@@ -15,9 +14,8 @@
 </head>
 
 <body>
-<% let rootPath = "../" %>
+    <% let rootPath = "../" %>
     <div class="container">
-
         <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,27 +26,57 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item dropdown show">
-                        <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Static Page</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">Static Page</a>
                         <div class="dropdown-menu " aria-labelledby="dropdown01">
                             <a class="dropdown-item" href="/index">index</a>
                             <a class="dropdown-item" href="/contact">contact</a>
                         </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#">Disabled</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">Single Model</a>
+                        <div class="dropdown-menu " aria-labelledby="dropdown01">
+                            <a class="dropdown-item" href="/post/index">post/index</a>
+                            <a class="dropdown-item" href="/post/new">post/new</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">Multi Model</a>
+                        <div class="dropdown-menu " aria-labelledby="dropdown01">
+                            <a class="dropdown-item" href="/person/index">person/index</a>
+                            <a class="dropdown-item" href="/person/new">person/new</a>
                     </li>
                 </ul>
-                <button class="btn btn-outline-success my-2 my-sm-0">ログイン</button>
+                <a href="/person/login" class="btn btn-outline-success my-2 my-sm-0">ログイン</a>
             </div>
         </nav>
-            <%- body %>
+        <div class="flashes">
+            <% if (flashMessages) { %>
+            <% if (flashMessages.success) { %>
+            <div class="alert alert-info">
+                <%= flashMessages.success %>
+            </div>
+            <% } else if (flashMessages.login) { %>
+            <div class="alert alert-info">
+                <%= flashMessages.login %>
+            </div>
+            <% } else if (flashMessages.error) { %>
+            <div class="alert alert-danger">
+                <%= flashMessages.error %>
+            </div>
+            <% } %>
+            <% } %>
+        </div>
+
+
+        <%- body %>
 
         <footer class="pt-4 my-md-5 pt-md-5 border-top">
             <div class="row">
                 <div class="col-12 col-md">
-                
+
                     <img class="mb-2" src="<%= rootPath %>img/cup.png" alt="" width="24" height="24">
                     <small class="d-block mb-3 text-muted">© 2020-</small>
                 </div>
@@ -60,24 +88,19 @@
                     </ul>
                 </div>
                 <div class="col-6 col-md">
-                    <h5>Resources</h5>
+                    <h5>Single Model</h5>
                     <ul class="list-unstyled text-small">
-                        <li><a class="text-muted" href="#">Resource</a></li>
-                        <li><a class="text-muted" href="#">Resource name</a></li>
-                        <li><a class="text-muted" href="#">Another resource</a></li>
-                        <li><a class="text-muted" href="#">Final resource</a></li>
+                        <li><a class="text-muted" href="/post/index">post/index</a></li>
+                        <li><a class="text-muted" href="/post/new">post/new</a></li>
                     </ul>
                 </div>
                 <div class="col-6 col-md">
-                    <h5>About</h5>
+                    <h5>Multi Model</h5>
                     <ul class="list-unstyled text-small">
-                        <li><a class="text-muted" href="#">Team</a></li>
-                        <li><a class="text-muted" href="#">Locations</a></li>
-                        <li><a class="text-muted" href="#">Privacy</a></li>
-                        <li><a class="text-muted" href="#">Terms</a></li>
+                        <li><a class="text-muted" href="/person/index">person/index</a></li>
+                        <li><a class="text-muted" href="/person/new">person/new</a></li>
                     </ul>
                 </div>
-
         </footer>
     </div>
     </div>

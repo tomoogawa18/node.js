@@ -12,8 +12,11 @@ module.exports = {
                 })
             .catch((error)=>{
                 console.log("post/index:" + error);
-                return [];
+                next(error);
             })
+    },
+    indexView: (req, res) => {
+        res.redirect("/");
     },
     new: (req, res, next) => {
         res.render('posts/new.ejs');
@@ -24,7 +27,54 @@ module.exports = {
             content: req.body.content
         });
         newPost.save();
+        next();
+    },
+    redirectView: (req, res) => {
         res.redirect('/post/index');
+    },
+    show: (req, res, next) => {
+        let postId = req.params.id;
+
+        post.findById(postId)
+            .then(post => {
+                res.locals.post = post;
+
+                next();
+            }).catch(error => {
+                console.log(`Error fetching user by ID: ${error.message}`)
+                next(error);
+            });
+    },
+    showView: (req, res) => {
+        res.render('posts/show');
+    },
+    update: (req, res, next) => {
+        let updateId = req.params.id;
+
+        let postParam = {
+            name: req.body.name,
+            content: req.body.content
+        };
+
+        post.findByIdAndUpdate(updateId,{
+            $set: postParam
+        })
+        .catch(error => {
+            console.log(`Error updating post by ID: ${error.message}`);
+        })
+
+        next();
+    },
+    delete: (req, res, next) => {
+        let postId = req.params.id;
+        post.findByIdAndDelete(postId)
+            .catch(error => {
+                console.log(`Error deleting user by ID: ${error.message}`);
+                next();
+            });
+
+
+        next();
     }
 };
 

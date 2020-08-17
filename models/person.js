@@ -5,14 +5,9 @@ const { Schema } = mongoose;
 
 const personSchema = new Schema({
     name: {
-        first: {
           type: String,
-          trim: true
-        },
-        last: {
-          type: String,
-          trim: true
-        }
+          trim: true,
+          require: true
       },
     email: {
         type: String,
@@ -31,8 +26,8 @@ const personSchema = new Schema({
     timestamps: true
 });
 
-personSchema.virtual("fullName").get(function(){
-    return `${this.name.first}${this.name.last}`;
-});
+// personSchema.virtual("fullName").get(function(){
+//     return `${this.name.first}${this.name.last}`;
+// });
 
 module.exports = mongoose.model("person", personSchema);
