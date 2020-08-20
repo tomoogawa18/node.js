@@ -2,6 +2,7 @@
 
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
+const bcrypt = require("bcrypt");
 
 const personSchema = new Schema({
     name: {
@@ -26,8 +27,22 @@ const personSchema = new Schema({
     timestamps: true
 });
 
-// personSchema.virtual("fullName").get(function(){
-//     return `${this.name.first}${this.name.last}`;
-// });
+personSchema.pre("save", function(next){
+    let person = this;
+    bcrypt.hash(person.password, 10)
+        .then((hash)=>{
+            person.password = hash;
+            next();
+        })
+        .catch(error => {
+            console.log(error);
+            next(error);
+        });
+});
+
+personSchema.methods.passwordComparison = function(inputPassword){
+    let person = this;
+    return bcrypt.compare(inputPassword, person.password);
+}
 
 module.exports = mongoose.model("person", personSchema);

@@ -42,7 +42,7 @@ router.use(expressLayouts);
 router.use(methodOverride("_method", {
   methods: ["POST", "GET"]
 }));
-
+//router.use(expressValidator());
 
 router.use(cookieParser("secret_passcode"));
 router.use(
@@ -73,14 +73,13 @@ router.put("/post/:id/update", postsController.update, postsController.redirectV
 router.delete("/post/:id/delete", postsController.delete, postsController.redirectView);
 
 router.get("/person/login", peopleController.login);
-router.post("/person/login", peopleController.authenticate, peopleController.renderView);
+router.post("/person/login", peopleController.authenticate, peopleController.redirectView);
 router.get("/person/index", peopleController.index, peopleController.indexView);
 router.get("/person/new", peopleController.new);
-router.post("/person/create", peopleController.create, peopleController.renderView);
+router.post("/person/create",peopleController.validate , peopleController.create, peopleController.indexRenderView);
 router.get("/person/:id", peopleController.show, peopleController.showView);
-router.put("/person/:id/update", peopleController.update, peopleController.redirectView);
-router.delete("/person/:id/delete", peopleController.delete, peopleController.redirectView);
-
+router.put("/person/:id/update", peopleController.update, peopleController.indexRedirectView);
+router.delete("/person/:id/delete", peopleController.delete, peopleController.indexRedirectView);
 
 router.use(errorController.logErrors);
 router.use(errorController.respondNoResourceFound);

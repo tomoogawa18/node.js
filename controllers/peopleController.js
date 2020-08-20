@@ -40,7 +40,7 @@ module.exports = {
             next();
         });
     },
-    renderView: (req, res) => {
+    indexRenderView: (req, res) => {
         person.find({})
             .exec()
             .then((people) => {
@@ -54,7 +54,12 @@ module.exports = {
                 next(error);
             })
     },
-    redirectView: (req, res) => {
+    renderView:  (req, res, next) => {
+        let renderPath = res.locals.render;
+        if (renderPath) res.redirect(renderPath);
+        else next();
+      },
+    indexRedirectView: (req, res) => {
             res.redirect('/person/index');
     },
     show: (req, res, next) => {
@@ -108,20 +113,35 @@ module.exports = {
             email: req.body.email
         })
         .then(person => {
-            if (person && person.password === req.body.password) {
-                console.log("login")
+            if(person){
+                person.passwordComparison(req.body.password)
+                    .then((passwordsMatch) => {
+                        if(passwordsMatch){
+                            res.locals.redirect = `/person/${person._id}`;
+                            req.flash("success", "認証に成功しました。");
+                            res.locals.flashMessages = req.flash();
 
-                req.flash("login", "ユーザーのログインに成功しました。");
-                res.locals.flashMessages = req.flash();
-
-                next();
-            } else {
-                next();
+                            res.locals.person = person;
+                        } else {
+                            req.flash("error", "認証に失敗しました。");
+                            res.locals.flashMessages = req.flash();
+                            res.locals.redirect = "/person/login";
+                        }
+                        next();
+                    })
             }
         })
         .catch(error => {
-            console.log("ここ通ってる");
+            console.log("ログインエラー");
             next(error);
         });
+    },
+    redirectView: (req, res, next) => {
+        let redirectPath = res.locals.redirect;
+        if(redirectPath) res.redirect(redirectPath)
+        else next()
+    },
+    validate: (req, res, next) => {
+        next();
     }
 };
