@@ -1,7 +1,7 @@
 "use strict"
 
 const express = require('express')
-const router = express.Router();
+const router = require("./routes/index");
 const mongodb = require('mongodb')
 const MongoClient = mongodb.MongoClient
 const mongoose = require('mongoose');
@@ -30,22 +30,22 @@ db.once("open", () => {
 });
 
 app.set("view engine", "ejs");
-router.use(express.static('public'))
+app.use(express.static('public'))
 
-router.use(
+app.use(
   express.urlencoded({
     extended: false
   })
 );
-router.use(express.json());
-router.use(expressLayouts);
-router.use(methodOverride("_method", {
+app.use(express.json());
+app.use(expressLayouts);
+app.use(methodOverride("_method", {
   methods: ["POST", "GET"]
 }));
 //router.use(expressValidator());
 
-router.use(cookieParser("secret_passcode"));
-router.use(
+app.use(cookieParser("secret_passcode"));
+app.use(
   expressSession({
     secret: "secret_passcode",
     cookie: {
@@ -55,35 +55,35 @@ router.use(
     saveUninitialized: false
   })
 );
-router.use(connectFlash());
+app.use(connectFlash());
 
-router.use((req, res, next) => {
+app.use((req, res, next) => {
   res.locals.flashMessages = req.flash();
   next();
 });
 
-router.get("/contact", homeController.contact)
-router.get("/index", homeController.index)
+// router.get("/contact", homeController.contact)
+// router.get("/index", homeController.index)
 
-router.get("/post/index", postsController.index, postsController.indexView, ()=>{console.log(res.locals.flashMessages);})
-router.get("/post/new", postsController.new)
-router.post("/post/create", postsController.create, postsController.redirectView)
-router.get("/post/:id", postsController.show, postsController.showView);
-router.put("/post/:id/update", postsController.update, postsController.redirectView);
-router.delete("/post/:id/delete", postsController.delete, postsController.redirectView);
+// router.get("/post/index", postsController.index, postsController.indexView, ()=>{console.log(res.locals.flashMessages);})
+// router.get("/post/new", postsController.new)
+// router.post("/post/create", postsController.create, postsController.redirectView)
+// router.get("/post/:id", postsController.show, postsController.showView);
+// router.put("/post/:id/update", postsController.update, postsController.redirectView);
+// router.delete("/post/:id/delete", postsController.delete, postsController.redirectView);
 
-router.get("/person/login", peopleController.login);
-router.post("/person/login", peopleController.authenticate, peopleController.redirectView);
-router.get("/person/index", peopleController.index, peopleController.indexView);
-router.get("/person/new", peopleController.new);
-router.post("/person/create",peopleController.validate , peopleController.create, peopleController.indexRenderView);
-router.get("/person/:id", peopleController.show, peopleController.showView);
-router.put("/person/:id/update", peopleController.update, peopleController.indexRedirectView);
-router.delete("/person/:id/delete", peopleController.delete, peopleController.indexRedirectView);
+// router.get("/person/login", peopleController.login);
+// router.post("/person/login", peopleController.authenticate, peopleController.redirectView);
+// router.get("/person/index", peopleController.index, peopleController.indexView);
+// router.get("/person/new", peopleController.new);
+// router.post("/person/create",peopleController.validate , peopleController.create, peopleController.indexRenderView);
+// router.get("/person/:id", peopleController.show, peopleController.showView);
+// router.put("/person/:id/update", peopleController.update, peopleController.indexRedirectView);
+// router.delete("/person/:id/delete", peopleController.delete, peopleController.indexRedirectView);
 
-router.use(errorController.logErrors);
-router.use(errorController.respondNoResourceFound);
-router.use(errorController.respondInternalError);
+// router.use(errorController.logErrors);
+// router.use(errorController.respondNoResourceFound);
+// router.use(errorController.respondInternalError);
 
 app.use("/", router);
 
