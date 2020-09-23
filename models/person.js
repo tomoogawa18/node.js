@@ -20,7 +20,8 @@ const personSchema = new Schema({
     },
     posts: [{
         type: mongoose.Schema.ObjectId,
-        ref: "post"
+        ref: "post",
+        aaa: "aaa"
     }]
 
 }, {
