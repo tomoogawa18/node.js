@@ -21,7 +21,6 @@ const personSchema = new Schema({
     posts: [{
         type: mongoose.Schema.ObjectId,
         ref: "post",
-        aaa: "aaa"
     }]
 
 }, {
